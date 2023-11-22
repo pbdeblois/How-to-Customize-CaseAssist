@@ -11,7 +11,7 @@
 - SFDX or newly named SF CLI
 - Auth the VSCode to your Org
 
-## Lets dive in
+## Setting up our Environment
 First, we install the [Coveo For Salesforce Package](https://docs.coveo.com/en/1102/coveo-for-salesforce/install-the-coveo-for-salesforce-application) if not already done. Link it to your Coveo Organization.
 
 Then, we can install Quantic.
