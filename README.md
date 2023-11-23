@@ -108,5 +108,47 @@ Save the Flow as a new version and click on Activate.
 ## Community
 
 We will be assuming you already set up a Community.
-Access the Builder, and select the Page where you want to CaseAssist to appear. I suggest Contact Support. Remove the previous components and Drag&Drop a Flow. Click the Flow and choose the Custom Flow. Fill in the information needed.
+Access the Builder, and select the Page where you want to CaseAssist to appear. I suggest `Contact Support`. Remove the previous components and Drag&Drop a `Flow`. Click the Flow and choose the Custom Flow we created earlier. Fill in the information needed.
 Publish and Test.
+
+Thats it. We have our CaseAssist working with a copy of the OOTB LWC. Its not time to customize.
+
+## Platform Token
+
+First step will be to create an Apex Class where our platform token logic will be handled. 
+CTRL+SHIFT+P to Create a new Apex Class and named it something similar to CustomCaseAssistController.
+Copy the [file in the cookbook in there](https://github.com/coveooss/sf-case-assist-cookbook/blob/main/src/main/default/classes/CaseAssistController.cls).
+If we leave it as is, we will query the SearchUISamples org. 
+Follow the documentation [Use Case Assist With Secured Content](https://docs.coveo.com/en/na6a5281/service/use-case-assist-with-secured-content), comment the first part and uncomment the second.
+
+Deploy to Org.
+
+## Modify our interface
+
+In the Quantic folder, you will find the LWC  `quanticCaseAssistInterface`. We want a copy of that. Proceeds the same way we did earlier. Give it a meaningful name eg `customQuanticCaseAssistInterface`
+This time, we will customize the logic in there. First line should be the `import` of the `getHeadlessConfiguration` method. Change the file name from HeadlessController to our custom PlatformToken class.
+
+Deploy to Org
+
+## Modify our CaseAssist
+
+In our own version of describeProblemScreen.html, we have a component being called. Change this to call our new custom Interface. 
+
+```html
+<c-quantic-case-assist-interface
+  engine-id={engineId}
+  case-assist-id={caseAssistId}
+  search-hub={searchHub}
+></c-quantic-case-assist-interface>
+
+// Change it to this
+<c-custom-quantic-case-assist-interface
+  engine-id={engineId}
+  case-assist-id={caseAssistId}
+  search-hub={searchHub}
+></c-custom-quantic-case-assist-interface>
+```
+
+Deploy to Org
+
+Refresh your Case Assist and look at the token in the Headers. You should have a Platfom token now.
