@@ -61,7 +61,9 @@ With CaseAssist being a LWC, we will need to set up a Flow. The Cookbook already
 
 We will use the Recommend Flow as we want the whole process. Navigate to the Setup menu of Salesforce and then, search `Flow` in Quick Find. Click on `Flow` then Recommended Flow.
 Top Right Corner, you will see a `Save As`. Select this and save in a new flow.
+
 ![[Training - How to Customize CaseAssist.png]]
+=======
 
 We have now a flow that we can customize. This flow uses 4 LWCs in our package.
 
@@ -91,6 +93,7 @@ Don't forget to add a .css file with the same name.
 In the .xml file, change the value of the `masterLabel`. Giving it the same name as the component is fine.
 
 Once everything is copied and the names have been changes, Deploy to org
+
 ![[Training - How to Customize CaseAssist_1.png]]
 
 Repeat for the 3 others LWC and deploy.
