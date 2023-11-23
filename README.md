@@ -9,7 +9,8 @@
 ## Prerequesites
 
 - VS Code
-- SFDX or newly named SF CLI
+- [SFDX or newly named SF CLI](https://developer.salesforce.com/docs/atlas.en-us.sfdx_setup.meta/sfdx_setup)
+- [Salesforce Extension Pack for VSCode](https://marketplace.visualstudio.com/items?itemName=salesforce.salesforcedx-vscode)
 - Auth the VSCode to your Org
 
 ## Setting up our Environment
@@ -62,8 +63,7 @@ With CaseAssist being a LWC, we will need to set up a Flow. The Cookbook already
 We will use the Recommend Flow as we want the whole process. Navigate to the Setup menu of Salesforce and then, search `Flow` in Quick Find. Click on `Flow` then Recommended Flow.
 Top Right Corner, you will see a `Save As`. Select this and save in a new flow.
 
-![[Training - How to Customize CaseAssist.png]]
-=======
+# ![[CaseAssist.png]]
 
 We have now a flow that we can customize. This flow uses 4 LWCs in our package.
 
@@ -94,6 +94,6 @@ In the .xml file, change the value of the `masterLabel`. Giving it the same name
 
 Once everything is copied and the names have been changes, Deploy to org
 
-![[Training - How to Customize CaseAssist_1.png]]
+![[CaseAssist_1.png]]
 
 Repeat for the 3 others LWC and deploy.
