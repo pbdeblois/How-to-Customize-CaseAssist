@@ -63,7 +63,7 @@ With CaseAssist being a LWC, we will need to set up a Flow. The Cookbook already
 We will use the Recommend Flow as we want the whole process. Navigate to the Setup menu of Salesforce and then, search `Flow` in Quick Find. Click on `Flow` then Recommended Flow.
 Top Right Corner, you will see a `Save As`. Select this and save in a new flow.
 
-![](https://github.com/pbdeblois/How-to-Customize-CaseAssist/blob/main/CaseAssist.png)
+![new flow](https://github.com/pbdeblois/How-to-Customize-CaseAssist/blob/main/CaseAssist.png)
 
 We have now a flow that we can customize. This flow uses 4 LWCs in our package.
 
@@ -94,6 +94,19 @@ In the .xml file, change the value of the `masterLabel`. Giving it the same name
 
 Once everything is copied and the names have been changes, Deploy to org
 
-![](https://github.com/pbdeblois/How-to-Customize-CaseAssist/blob/main/CaseAssist_1.png)
+![deploy](https://github.com/pbdeblois/How-to-Customize-CaseAssist/blob/main/CaseAssist_1.png)
 
 Repeat for the 3 others LWC and deploy.
+
+## Reorganize our flow
+
+Now that we have all the parts of the flow, we will swap the OOTB for ours.
+Edit the first node. Drag and drop the newly created LWC below the original one. Give our new component a different API name and reenter the same values for the rest. Save and do so for the 3 others nodes
+
+Save the Flow as a new version and click on Activate.
+
+## Community
+
+We will be assuming you already set up a Community.
+Access the Builder, and select the Page where you want to CaseAssist to appear. I suggest Contact Support. Remove the previous components and Drag&Drop a Flow. Click the Flow and choose the Custom Flow. Fill in the information needed.
+Publish and Test.
