@@ -53,7 +53,7 @@ With CaseAssist being a LWC, we will need to set up a Flow. The Cookbook already
 
 We will use the Recommend Flow as we want the whole process. Navigate to the Setup menu of Salesforce and then, search `Flow` in Quick Find. Click on `Flow` then Recommended Flow.
 Top Right Corner, you will see a `Save As`. Select this and save in a new flow.
-![[Training - How to Customize CaseAssist.png]]
+![[assets/Training - How to Customize CaseAssist.png]]
 
 We have now a flow that we can customize. This flow uses 4 LWCs in our package.
 - describeProblemScreen
@@ -62,3 +62,24 @@ We have now a flow that we can customize. This flow uses 4 LWCs in our package.
 - finalScreen
 
 Lets put that Flow on the side for now.
+
+## Create the LWC
+
+In order to test customization and OOTB component, our main goal will be to duplicate the LWC. This means we will always have a original component to refer too if needed. 
+Lets create our duplicate of the main components. 
+Open VSCode and enter CTRL+SHIFT+P -> SFDX Create Lightning Web Component 
+Give it a meaningful name e.g. `customDescribeProblemScreen`
+once created, we can copy the file that are in `describeProblemScreen` to our newly created `customDescribeProblemScreen` . 
+While copying the JavaScript file, don't forget to keep the name of the class.
+```js
+export default class DescribeProblemScreen extends LightningElement {
+// Will become
+export default class CustomDescribeProblemScreen extends LightningElement {
+```
+Don't forget to add a .css file with the same name.
+In the .xml file, change the value of the `masterLabel`. Giving it the same name as the component is fine.
+
+Once everything is copied and the names have been changes, Deploy to org
+![[assets/Training - How to Customize CaseAssist_1.png]]
+
+Repeat for the 3 others LWC and deploy.
