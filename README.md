@@ -37,3 +37,28 @@ Lets retrieve the CaseAssist with this command line
 sfdx project retrieve start --package-name 'Salesforce Quantic Case Assist Cookbook'
 ```
 If you can see the folder in our Project folder, you are now ready to start.
+
+## Create the Flow
+With CaseAssist being a LWC, we will need to set up a Flow. The Cookbook already provides 2 flows that we can use.
+### Recommended Flow
+1) Subject and Description
+2) Classification Screen
+3) Document Suggestion Screen
+4) Confirmation Screen
+
+### Demo Flow
+1) Subject and Description
+2) Document Suggestion Screen
+3) Confirmation Screen
+
+We will use the Recommend Flow as we want the whole process. Navigate to the Setup menu of Salesforce and then, search `Flow` in Quick Find. Click on `Flow` then Recommended Flow.
+Top Right Corner, you will see a `Save As`. Select this and save in a new flow.
+![[Training - How to Customize CaseAssist.png]]
+
+We have now a flow that we can customize. This flow uses 4 LWCs in our package.
+- describeProblemScreen
+- provideDetailsScreen
+- reviewResourcesScreen
+- finalScreen
+
+Lets put that Flow on the side for now.
