@@ -39,9 +39,10 @@ Lets retrieve the CaseAssist with this command line
 
 ```sh
 sfdx project retrieve start --package-name 'Salesforce Quantic Case Assist Cookbook'
+sfdx project retrieve start --package-name 'Quantic'
 ```
 
-If you can see the folder in our Project folder, you are now ready to start.
+If you can see the folders in our Project folder, you are now ready to start.
 
 ## Create the Flow
 
