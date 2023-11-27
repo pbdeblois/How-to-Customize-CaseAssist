@@ -103,6 +103,11 @@ Repeat for the 3 others LWC and deploy.
 
 Now that we have all the parts of the flow, we will swap the OOTB for ours.
 Edit the first node. Drag and drop the newly created LWC below the original one. Give our new component a different API name and reenter the same values for the rest. Save and do so for the 3 others nodes
+Note: On each node, we need to update the Advanced section.
+- On the first Describe Problem, adjust "Data from the case" with {!caseData} and select "Refresh inputs to incorporate changes elsewhere in the flow"
+- Do the same on Provide Details Screen
+- One Review Resources screen, we will en {!recordId} in "The record ID of the newly created case"
+- Then Final Screen, {!recordID} in "Newly created case ID"
 
 Save the Flow as a new version and click on Activate.
 
