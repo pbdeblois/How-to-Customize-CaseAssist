@@ -39,10 +39,10 @@ If you can see the folder in our Project folder, you are now ready to start.
 We will need 2 new classes in order to generate our custom token.
 
 ### TokenProvider
-CTRL+SHIFT+P -> Create a new Apex Class -> Naming it `CustomCommunityQuanticToken`
+- CTRL+SHIFT+P -> Create a new Apex Class -> Naming it `CustomCommunityQuanticToken`.
 This is where the logic applied to the search token will be generated.
 We will keep it simple for now by applying our SearchHub, a simple filter and an additionalUserIdentities. Those can be dynamically changed.
-
+Once the following content has been copied in, deploy to Org.
 
 ```java
 global with sharing class CustomCommunityQuanticToken implements ITokenProvider {
@@ -67,13 +67,15 @@ global with sharing class CustomCommunityQuanticToken implements ITokenProvider 
         return JSON.serialize(headlessConfiguration);
     }
 }
+
 ```
 
 ### Headless Controller
 
+- CTRL+SHIFT+P -> Create a new Apex Class -> Naming it `CustomCommunityHeadlessController`.
 This apex class will be in the middle of our QuanticSearchInterface and the TokenProvider. 
-CTRL+SHIFT+P -> Create a new Apex Class -> Naming it `CustomCommunityHeadlessController`
 Not much else will be happening here. Copy and paste the following in.
+Deploy to Org.
 
 ```java
 
@@ -96,56 +98,38 @@ global with sharing class CustomCommunityHeadlessController {
 ## Create the LWC
 
 ### QuanticSearchInterface
-Lets start by copying where the QuanticSearchInterface component so we can start customizing our search token. CTRL+SHIFT+P to create a new LWC., name it customQuanticSearchInterface and copy each file from QuanticSearchInterface
 
+Lets start by copying where the QuanticSearchInterface component so we can start customizing our search token. 
+- CTRL+SHIFT+P to create a new LWC., name it customQuanticSearchInterface and copy each file from QuanticSearchInterface
 
+In the first few lines, we have the imports. Lets modify the import of the `getHeadlessConfiguration` method to call our new custom class
+`import getHeadlessConfiguration from '@salesforce/apex/CustomCommunityHeadlessController.getHeadlessConfiguration';`
+Save and Deploy to Org.
 
 ### QuanticSearch
-We will create a new QuanticSearch. CTRL+SHIFT+P to create a new LWC. Lets name it `customQuanticSearch`. Copy file by file the content of quanticSearch in our new component. 
+We will create a new QuanticSearch. 
+- CTRL+SHIFT+P to create a new LWC. Lets name it `customQuanticSearch`. 
+Copy file by file the content of quanticSearch in our new component. 
 
+it the first few lines, we will find 
+`<c-quantic-search-interface engine-id={engineId}>`
+Lets renamed it to this
+`<c-custom-quantic-search-interface engine-id={engineId}>`
 
-## Reorganize our flow
+Just to simplyfy our lives when we access our community, we will add a small snippet of text. This way, we wont have to go in the Builder to know which component we are testing with.
 
+```html
+<template>
+  <div onregisterresulttemplates={handleResultTemplateRegistration}>
+  <div class="search__grid">
+    <c-custom-quantic-search-interface engine-id={engineId}> 
+      <p>Custom Quantic Search</p>
+[...]
+```
 
 ## Community
 
-
-## Custom Token
-
-First step will be to create an Apex Class where our platform token logic will be handled. 
-CTRL+SHIFT+P to Create a new Apex Class and named it something similar to CustomCaseAssistController.
-Copy the [file in the cookbook in there](https://github.com/coveooss/sf-case-assist-cookbook/blob/main/src/main/default/classes/CaseAssistController.cls).
-If we leave it as is, we will query the SearchUISamples org. 
-Follow the documentation [Use Case Assist With Secured Content](https://docs.coveo.com/en/na6a5281/service/use-case-assist-with-secured-content), comment the first part and uncomment the second.
-
-Deploy to Org.
-
-## Modify our interface
-
-In the Quantic folder, you will find the LWC  `quanticCaseAssistInterface`. We want a copy of that. Proceeds the same way we did earlier. Give it a meaningful name eg `customQuanticCaseAssistInterface`
-This time, we will customize the logic in there. First line should be the `import` of the `getHeadlessConfiguration` method. Change the file name from HeadlessController to our custom PlatformToken class.
+Now, we go to our Community Builder and simply drag and drop our new customQuanticSearch
 
 Deploy to Org
 
-## Modify our CaseAssist
-
-In our own version of describeProblemScreen.html, we have a component being called. Change this to call our new custom Interface. 
-
-```html
-<c-quantic-case-assist-interface
-  engine-id={engineId}
-  case-assist-id={caseAssistId}
-  search-hub={searchHub}
-></c-quantic-case-assist-interface>
-
-// Change it to this
-<c-custom-quantic-case-assist-interface
-  engine-id={engineId}
-  case-assist-id={caseAssistId}
-  search-hub={searchHub}
-></c-custom-quantic-case-assist-interface>
-```
-
-Deploy to Org
-
-Refresh your Case Assist and look at the token in the Headers. You should have a Platfom token now.
